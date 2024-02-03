@@ -5,7 +5,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut // Import the signOut function
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -15,12 +16,12 @@ import {
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDs3wujqG6Z4tJ5AGSqkUvSJ2kYOPAYZvo",
-  authDomain: "crwn-clothing2-7aa8c.firebaseapp.com",
-  projectId: "crwn-clothing2-7aa8c",
-  storageBucket: "crwn-clothing2-7aa8c.appspot.com",
-  messagingSenderId: "230795597025",
-  appId: "1:230795597025:web:4f129d385f2697b11613a0",
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id",
 };
 
 const firebase = initializeApp(firebaseConfig);
@@ -34,11 +35,16 @@ googleProvider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => 
-signInWithPopup(auth, googleProvider);
+  signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => 
-signInWithRedirect(auth, googleProvider);
+  signInWithRedirect(auth, googleProvider);
+
+export const signOutUser = () => 
+  signOut(auth); // Add the signOut function
 
 export const db = getFirestore();
+
+// ... (rest of your code)
 
 export const createUserDocumentFromAuth = async (
   userAuth, 
